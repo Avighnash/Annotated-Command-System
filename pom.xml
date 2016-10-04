@@ -16,35 +16,62 @@
     </repositories>
 
     <dependencies>
+
+        <!-- Spigot API -->
         <dependency>
             <groupId>org.spigotmc</groupId>
-            <artifactId>spigot</artifactId>
-            <version>1.9-R0.1-SNAPSHOT</version>
+            <artifactId>spigot-api</artifactId>
+            <version>1.10.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Bukkit API -->
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>1.10.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- In the server -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
-    <build>
-        <finalName>CommandSystem</finalName>
-        <defaultGoal>clean package install</defaultGoal>
-        <plugins>
-            <plugin>
-                <!-- maven compiler plugin -->
-                <version>3.1</version>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-    </build>
+   <build>
+       <finalName>Command-System</finalName>
+       <defaultGoal>clean package</defaultGoal>
+   
+       <plugins>
+           <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-compiler-plugin</artifactId>
+               <version>3.5.1</version>
+               <configuration>
+                   <source>1.8</source>
+                   <target>1.8</target>
+               </configuration>
+           </plugin>
+   
+           <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-shade-plugin</artifactId>
+               <version>2.4.3</version>
+               <executions>
+                   <execution>
+                       <phase>package</phase>
+                       <goals>
+                           <goal>shade</goal>
+                       </goals>
+                   </execution>
+               </executions>
+           </plugin>
+       </plugins>
+   </build>
 
 </project>
