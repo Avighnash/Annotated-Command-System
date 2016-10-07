@@ -30,6 +30,8 @@ public class Commands implements Listener
         Validate.notNull(plugin, "You must provide a plugin");
 
         commands = Maps.newHashMap();
+
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     public Commands addCommand(final Class<?> containingClass)
@@ -56,6 +58,14 @@ public class Commands implements Listener
             Stream.of(_annotation.aliases()).forEach(alias -> commands.put(alias, _pair));
         }
 
+        return this;
+    }
+
+    public Commands removeCommand(String... executors)
+    {
+        Validate.isTrue(executors.length >= 1, "You must provide at least one to remove");
+        
+        Stream.of(executors).forEach(commands::remove);
         return this;
     }
 
